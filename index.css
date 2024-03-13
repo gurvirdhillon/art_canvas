@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  canvas {
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    /* background-color: #434242; */
+    /* border: 1px solid black; */
+  }
+        #thicknessSlider {
+    margin-right: 10px;
+  }
+  
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #434242;
+    color: white;
+  }
+  
+  .header-container input,
+  .header-container h1 {
+    margin-right: 10px; /* Adjust the margin as needed */
+  }
+  
+  .rubber {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .rubber:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+  
