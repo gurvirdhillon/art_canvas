@@ -1,10 +1,10 @@
 function drawingInit() {
-const canvas = document.getElementById("drawingCanvas");
-  const context = canvas.getContext("2d");
+  const canvas = document.getElementById('drawingCanvas');
+  const context = canvas.getContext('2d');
   let drawing = false;
 
-  let currentColor = localStorage.getItem("currentColor") || "#000000";
-  let currentThickness = localStorage.getItem("currentThickness") || 2;
+  let currentColor = localStorage.getItem('currentColor') || '#000000';
+  let currentThickness = localStorage.getItem('currentThickness') || 2;
   context.strokeStyle = currentColor;
   context.lineWidth = currentThickness;
 
@@ -15,31 +15,31 @@ const canvas = document.getElementById("drawingCanvas");
   const thicknessInput = document.querySelector('#strokeThickness');
   const rubberButton = document.querySelector('.rubber');
 
-  colorPicker.addEventListener("input", updateColor);
-  thicknessInput.addEventListener("input", updateThickness);
-  rubberButton.addEventListener("click", useRubber);
+  colorPicker.addEventListener('input', updateColor);
+  thicknessInput.addEventListener('input', updateThickness);
+  rubberButton.addEventListener('click', useRubber);
 
-  canvas.addEventListener("mousedown", startDrawing);
-  canvas.addEventListener("mousemove", draw);
-  canvas.addEventListener("mouseup", stopDrawing);
-  canvas.addEventListener("mouseout", stopDrawing);
+  canvas.addEventListener('mousedown', startDrawing);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', stopDrawing);
+  canvas.addEventListener('mouseout', stopDrawing);
 
-  canvas.addEventListener("touchstart", startDrawing);
-  canvas.addEventListener("touchmove", draw);
-  canvas.addEventListener("touchend", stopDrawing);
+  canvas.addEventListener('touchstart', startDrawing);
+  canvas.addEventListener('touchmove', draw);
+  canvas.addEventListener('touchend', stopDrawing);
 
   function startDrawing(e) {
     drawing = true;
     draw(e);
   }
 
-function draw(e) {
+  function draw(e) {
     if (!drawing) return;
 
     const rect = canvas.getBoundingClientRect();
     let x, y;
 
-    if (e.type === "touchmove" || e.type === "touchstart") {
+    if (e.type === 'touchmove' || e.type === 'touchstart') {
       x = e.touches[0].clientX - rect.left;
       y = e.touches[0].clientY - rect.top;
       e.preventDefault();
@@ -60,38 +60,37 @@ function draw(e) {
     context.beginPath();
   }
 
-function updateColor() {
+  function updateColor() {
     currentColor = colorPicker.value;
     context.strokeStyle = currentColor;
-    localStorage.setItem("currentColor", currentColor);
-  
+    localStorage.setItem('currentColor', currentColor);
+
     if (rubberButton.classList.contains('rubber-active')) {
       context.globalCompositeOperation = 'source-over';
+    }
   }
-}
-  
-function updateThickness() {
+
+  function updateThickness() {
     currentThickness = thicknessInput.value;
     context.lineWidth = currentThickness;
-    localStorage.setItem("currentThickness", currentThickness);
-}
+    localStorage.setItem('currentThickness', currentThickness);
+  }
 
-function useRubber() {
+  function useRubber() {
     context.globalCompositeOperation = 'destination-out';
     context.lineWidth = currentThickness * 2;
     rubberButton.classList.add('rubber-active');
-}
+  }
 
-rubberButton.addEventListener("mouseup", () => {
+  rubberButton.addEventListener('mouseup', () => {
     context.globalCompositeOperation = 'source-over';
     context.lineWidth = currentThickness;
-});
+  });
 
-window.addEventListener("resize", function () {
+  window.addEventListener('resize', function () {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   });
-};
+}
 
 window.addEventListener('load', drawingInit);
-
