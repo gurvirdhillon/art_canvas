@@ -1,0 +1,10 @@
+# Dependencies
+
+This is an art canvas that you can use to draw anything on. You have a range of colours. Can use the canvas to scribble anything on and it has a rubber feature to erase any mistakes.
+
+It is connected to a server.
+
+## Future works
+
+* Can add pages in the future.
+* Can save the pages onto local storage
