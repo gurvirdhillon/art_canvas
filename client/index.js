@@ -93,3 +93,29 @@ document.addEventListener('DOMContentLoaded', function () {
     canvas.height = window.innerHeight;
   });
 });
+
+function saveCanvas() {
+  const canvas = document.querySelector('#drawingCanvas');
+  const canvasDataUrl = canvas.toDataURL();
+  localStorage.setItem('savedCanvas', canvasDataUrl);
+}
+
+function loadSavedCanvas() {
+  const savedCanvas = localStorage.getItem('savedCanvas');
+  if (savedCanvas) {
+    const canvas = document.querySelector('#drawingCanvas');
+    const context = canvas.getContext('2d');
+    const savedImage = new Image();
+    savedImage.onload = function () {
+      context.drawImage(savedImage, 0, 0); // Draw saved image onto canvas
+    };
+    savedImage.src = savedCanvas;
+  }
+}
+
+// Call the function to load saved canvas when the page loads
+window.addEventListener('load', loadSavedCanvas);
+
+// Call the function to save canvas when the save button is clicked
+const saveButton = document.querySelector('.save');
+saveButton.addEventListener('click', saveCanvas);

@@ -33,13 +33,29 @@ canvas {
   font-size: 16px;
   border: none;
   border-radius: 5px;
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50;
   color: white;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .rubber:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.save{
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  /* background-color: ; */
+  /* color: white; */
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.save:hover{
   transform: scale(1.1);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
