@@ -1,5 +1,5 @@
-// Ensure the DOM content is loaded before accessing DOM elements
 document.addEventListener('DOMContentLoaded', function () {
+  const currentPage = 0;
   const canvas = document.getElementById('drawingCanvas');
   const context = canvas.getContext('2d');
   let drawing = false;
@@ -113,9 +113,7 @@ function loadSavedCanvas() {
   }
 }
 
-// Call the function to load saved canvas when the page loads
 window.addEventListener('load', loadSavedCanvas);
 
-// Call the function to save canvas when the save button is clicked
 const saveButton = document.querySelector('.save');
 saveButton.addEventListener('click', saveCanvas);

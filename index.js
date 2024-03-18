@@ -1,4 +1,3 @@
-// Ensure the DOM content is loaded before accessing DOM elements
 document.addEventListener('DOMContentLoaded', function () {
   const canvas = document.getElementById('drawingCanvas');
   const context = canvas.getContext('2d');
@@ -93,3 +92,27 @@ document.addEventListener('DOMContentLoaded', function () {
     canvas.height = window.innerHeight;
   });
 });
+
+function saveCanvas() {
+  const canvas = document.querySelector('#drawingCanvas');
+  const canvasDataUrl = canvas.toDataURL();
+  localStorage.setItem('savedCanvas', canvasDataUrl);
+}
+
+function loadSavedCanvas() {
+  const savedCanvas = localStorage.getItem('savedCanvas');
+  if (savedCanvas) {
+    const canvas = document.querySelector('#drawingCanvas');
+    const context = canvas.getContext('2d');
+    const savedImage = new Image();
+    savedImage.onload = function () {
+      context.drawImage(savedImage, 0, 0); // Draw saved image onto canvas
+    };
+    savedImage.src = savedCanvas;
+  }
+}
+
+window.addEventListener('load', loadSavedCanvas);
+
+const saveButton = document.querySelector('.save');
+saveButton.addEventListener('click', saveCanvas);
