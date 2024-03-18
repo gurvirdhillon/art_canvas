@@ -100,6 +100,16 @@ function saveCanvas() {
   localStorage.setItem('savedCanvas', canvasDataUrl);
 }
 
+const clearButton = document.querySelector('.clearCanvas');
+clearButton.addEventListener('click', clearCanvas);
+
+function clearCanvas() {
+  const canvas = document.getElementById('drawingCanvas');
+  const context = canvas.getContext('2d');
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  localStorage.clear();
+}
+
 function loadSavedCanvas() {
   const savedCanvas = localStorage.getItem('savedCanvas');
   if (savedCanvas) {
@@ -114,6 +124,3 @@ function loadSavedCanvas() {
 }
 
 window.addEventListener('load', loadSavedCanvas);
-
-const saveButton = document.querySelector('.save');
-saveButton.addEventListener('click', saveCanvas);
