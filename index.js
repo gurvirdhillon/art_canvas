@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+  const currentPage = 0;
   const canvas = document.getElementById('drawingCanvas');
   const context = canvas.getContext('2d');
   let drawing = false;
